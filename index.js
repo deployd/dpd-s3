@@ -13,6 +13,7 @@ function S3Bucket(name, options) {
         key: this.config.key
       , secret: this.config.secret
       , bucket: this.config.bucket
+      , region: this.config.region
     });
   }
 }
@@ -144,6 +145,10 @@ S3Bucket.prototype.uploadFile = function(filename, filesize, mime, stream, fn) {
     , 'Content-Type': mime
   };
 
+  if(this.config.publicRead){
+    headers['x-amz-acl'] = 'public-read';
+  }
+
   this.client.putStream(stream, filename, headers, function(err, res) { 
     if (err) return ctx.done(err);
     if (res.statusCode !== 200) {
@@ -180,7 +185,12 @@ S3Bucket.prototype.upload = function(ctx, next) {
 
 S3Bucket.prototype.get = function(ctx, next) {
   var bucket = this;
-  var url = 'https://s3.amazonaws.com/' + this.config.bucket + ctx.url;
+  var url;
+  if(this.config.region){
+    url = 'https://s3-'+this.config.region+'.amazonaws.com/' + this.config.bucket + ctx.url;
+  }else{
+    url = 'https://s3.amazonaws.com/' + this.config.bucket + ctx.url;
+  }
 
   httpUtil.redirect(ctx.res, url);
 };
