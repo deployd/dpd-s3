@@ -58,6 +58,7 @@ S3Bucket.prototype.handle = function (ctx, next) {
     var remaining = 0;
     var files = [];
     var error;
+    var lastFile;
 
     var uploadedFile = function(err) {
       if (err) {
@@ -67,7 +68,7 @@ S3Bucket.prototype.handle = function (ctx, next) {
         remaining--;
         if (remaining <= 0) {
           if (req.headers.referer) {
-            httpUtil.redirect(ctx.res, req.headers.referer || '/');
+            ctx.done(null,{'file':ctx.url, 'success':true, 'filesize':lastFile.size});
           } else {
             ctx.done(null, files);
           }
@@ -78,7 +79,7 @@ S3Bucket.prototype.handle = function (ctx, next) {
     form.parse(req)
       .on('file', function(name, file) {
         remaining++;
-
+        lastFile = file;
         if (bucket.events.upload) {
           bucket.events.upload.run(ctx, {url: ctx.url, fileSize: file.size, fileName: ctx.url}, function(err) {
             if (err) return uploadedFile(err);
