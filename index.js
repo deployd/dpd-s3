@@ -80,12 +80,12 @@ S3Bucket.prototype.handle = function (ctx, next) {
         remaining++;
 
         if (bucket.events.upload) {
-          bucket.events.upload.run(ctx, {url: ctx.url, fileSize: file.size, fileName: file.filename}, function(err) {
+          bucket.events.upload.run(ctx, {url: ctx.url, fileSize: file.size, fileName: ctx.url}, function(err) {
             if (err) return uploadedFile(err);
-            bucket.uploadFile(file.filename, file.size, file.mime, fs.createReadStream(file.path), uploadedFile);  
+            bucket.uploadFile(ctx.url, file.size, file.type, fs.createReadStream(file.path), uploadedFile);  
           });
         } else {
-          bucket.uploadFile(file.filename, file.size, file.mime, fs.createReadStream(file.path), uploadedFile);
+          bucket.uploadFile(ctx.url, file.size, file.type, fs.createReadStream(file.path), uploadedFile);
         }
       })
       .on('error', function(err) {
