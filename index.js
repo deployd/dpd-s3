@@ -33,6 +33,15 @@ S3Bucket.basicDashboard = {
   }, {
       name: 'secret'
     , type: 'string'
+  }, {
+      name: 'region',
+      type: 'string',
+      description: 'the region of your s3 bucket, ex: \'us-west-2\''
+  }, {
+      name: 'publicRead',
+      type: 'checkbox',
+      description: 'when files are uploaded to your bucket, automatically set public read access?'
+
   }]
 };
 
