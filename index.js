@@ -53,7 +53,7 @@ S3Bucket.prototype.handle = function (ctx, next) {
 
   if (!this.client) return ctx.done("Missing S3 configuration!");
 
-  if (req.method === "POST" && !req.internal && req.headers['content-type'].indexOf('multipart/form-data') === 0) {
+  if (req.method === "POST" && !req.internal && req.headers['content-type'] && req.headers['content-type'].indexOf('multipart/form-data') === 0) {
     var form = new formidable.IncomingForm();
     var remaining = 0;
     var files = [];
