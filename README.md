@@ -1,5 +1,3 @@
-dpd-s3
-======
 # dpd-s3 v0.2.0
 
 Deployd module for a resource to GET/POST to and from an AWS s3 bucket
@@ -45,6 +43,7 @@ HTML example:
 Typical example:
 
 // 	~/resources/uploads/config.json
+```json
 {
 	"type": "Collection",
 	"properties": {
@@ -90,17 +89,19 @@ Typical example:
 		}
 	}
 }
+```
 
 // ~/resources/uploads/post.js
+```javascript
     this.timestamp = new Date().getTime();
     if( !internal ){
        console.log(this.timestamp + "- WARNING: user trying to upload files in unauthorized fashion.") ;
        cancel("operation not allowed", 401);
     }
-
+```
 
 // And then in ~/resouces/s3bucket/upload.js
-
+```javascript
    // On Upload
     // Set a limit on file size
     if (fileSize > 1024*1024*1024) { // 1GB
@@ -115,4 +116,5 @@ Typical example:
 	    	console.log(timestamp + "AWS file upload err: ", err);
 	    }
 	});
+```
 //    
