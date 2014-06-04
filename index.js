@@ -37,6 +37,7 @@ S3Bucket.basicDashboard = {
   }, {
       name: 'region'
     , type: 'string'
+    , description: 'the region of your s3 bucket, ex: \'us-west-2\''
   }, {
       name: 'basePath',
       type: 'text',
