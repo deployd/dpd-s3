@@ -1,4 +1,4 @@
-# dpd-s3 v0.2.0
+# dpd-s3 v0.2.1
 
 Deployd module for a resource to GET/POST to and from an AWS s3 bucket
 
