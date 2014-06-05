@@ -32,11 +32,12 @@ Add a resource in the deployd dashboard selecting dpd-imageWrangler and name you
  - destination url: the name of the resource ( 's3bucket' by default) - example uploads to the uploads url in the bucket
 
 HTML example:
-			 <form action="http://myapp.com/s3bucket/uploads" enctype="multipart/form-data" method="post">
-                  <input type="file" name="upload" multiple="multiple" />
-                  <button type="submit">Upload</button>
-              </form>
-
+```html
+		<form action="http://myapp.com/s3bucket/uploads" enctype="multipart/form-data" method="post">
+			<input type="file" name="upload" multiple="multiple" />
+			<button type="submit">Upload</button>
+		</form>
+```
 
 3 - optional ) Add a collection to catch the data returned after the upload 
 
