@@ -2,14 +2,14 @@
 
 Deployd module for a resource to GET/POST to and from an AWS s3 bucket
 
-This is based on Ritchie Martori's origin version ( https://github.com/deployd/dpd-s3 ) which was un-published from npm as it didn't work.  Ritchie accepted the pull request with my changes to make it work again, but hasn't ever re-published it.  So I am publishing it as I frequently use it.
-
-Since then I have continued to make changes to suite my specific needs.  
+This is based on Ritchie Martori's origin version ( https://github.com/deployd/dpd-s3 ), I have also pulled in changes from various other repo's across GitHub, so this should represent the latest changes from all the fork except DaGaMs's fork, which added an 'uploading' event.
 
 ## Install
 
-	npm install dpd-s3
-
+	npm install https://github.com/fotoflo/dpd-s3/tarball/master
+	
+	// Hopefully these changes can be pulled into the master dpd-s3 repository
+	
 ## Configuration
 
 Add a resource in the deployd dashboard selecting dpd-imageWrangler and name your resource. In the config for your new resource, you'll need to supply:
