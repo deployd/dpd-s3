@@ -1,5 +1,5 @@
 {
-  "name": "s3-bucket-resource",
+  "name": "dpd-s3",
   "version": "0.0.1-pre",
   "dependencies": {
       "knox": "0.1.x"
