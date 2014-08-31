@@ -6,6 +6,8 @@ var knox = require('knox')
 , util = require('util')
 , path = require('path');
 
+var AWS = require('aws-sdk');
+
 function S3Bucket(name, options) {
     Resource.apply(this, arguments);
     if (this.config.key && this.config.secret && this.config.bucket) {
@@ -15,6 +17,13 @@ function S3Bucket(name, options) {
             bucket: this.config.bucket,
             region: this.config.region
         });
+
+        this.s3 = new AWS.S3({
+            accessKeyId:this.config.key,
+            secretAccessKey: this.config.secret,
+            region: this.config.region,
+        });
+        this.s3BucketName = this.config.bucket;
     }
 }
 util.inherits(S3Bucket, Resource);
@@ -233,6 +242,21 @@ S3Bucket.prototype.upload = function(ctx, next) {
 };
 
 S3Bucket.prototype.get = function(ctx, next) {
+    if ( ! this.config.publicRead) {
+        var params = {
+            Bucket: this.s3BucketName,
+            Key: ctx.url[0] == '/' ? ctx.url.substr(1) : ctx.url,
+            Expires: 60, // 60 seconds
+        };
+        this.s3.getSignedUrl('getObject', params, function(err, url){
+            if (err) {
+                return ctx.done(err);
+            }
+            httpUtil.redirect(ctx.res, url);
+        });
+        return;
+    }
+
     var bucket = this;
     var url;
     if(this.config.region){
