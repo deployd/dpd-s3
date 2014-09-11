@@ -54,7 +54,10 @@ S3Bucket.basicDashboard = {
         name: 'publicRead',
         type: 'checkbox',
         description: 'when files are uploaded to your bucket, automatically set public read access?'
-
+    // }, {
+    //     name: 'useSignedUrl',
+    //     type: 'checkbox',
+    //     description: 'use SignedUrl, so client directly connect with s3'
     }]
 };
 
@@ -242,10 +245,33 @@ S3Bucket.prototype.upload = function(ctx, next) {
 };
 
 S3Bucket.prototype.get = function(ctx, next) {
-    if ( ! this.config.publicRead) {
+
+    // use signedUrl Put
+    if ( ctx.query.signedUrl == 'Put' ) {
+
+        var s3Key = ctx.url[0] == '/' ? ctx.url.substr(1) : ctx.url;
+        //console.log(s3Key, ctx.query.ContentType, ctx.query.ContentLength);
         var params = {
             Bucket: this.s3BucketName,
-            Key: ctx.url[0] == '/' ? ctx.url.substr(1) : ctx.url,
+            Key: s3Key,
+            Expires: 5*60, // 5*60 seconds
+            ContentType: ctx.query.ContentType,
+            //ContentLength: ctx.query.ContentLength,
+        };
+        this.s3.getSignedUrl('putObject', params, function(err, url){
+            ctx.done(err, url);
+        });
+
+        return;
+    }
+
+    // use signedUrl Get
+    if ( !this.config.publicRead ) {
+
+        var s3Key = ctx.url[0] == '/' ? ctx.url.substr(1) : ctx.url;
+        var params = {
+            Bucket: this.s3BucketName,
+            Key: s3Key,
             Expires: 60, // 60 seconds
         };
         this.s3.getSignedUrl('getObject', params, function(err, url){
@@ -254,8 +280,10 @@ S3Bucket.prototype.get = function(ctx, next) {
             }
             httpUtil.redirect(ctx.res, url);
         });
+
         return;
     }
+
 
     var bucket = this;
     var url;
