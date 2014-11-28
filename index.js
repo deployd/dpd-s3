@@ -279,7 +279,10 @@ S3Bucket.prototype.get = function(ctx, next) {
             if (err) {
                 return ctx.done(err);
             }
-            httpUtil.redirect(ctx.res, url);
+            //httpUtil.redirect(ctx.res, url);
+            ctx.res.statusCode = 301;
+            ctx.res.setHeader("Location", url);
+            ctx.res.end(url);
         });
 
         return;
