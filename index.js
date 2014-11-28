@@ -159,9 +159,10 @@ S3Bucket.prototype.handle = function (ctx, next) {
         }
 
     } else if (req.method === "GET") {
-        if (ctx.res.internal) {
-            return next(); // This definitely has to be HTTP.
-        }
+        // allow script get the redirected link
+        // if (ctx.res.internal) {
+        //     return next(); // This definitely has to be HTTP.
+        // }
 
         if (this.events.get) {
             this.events.get.run(ctx, domain, function(err) {
