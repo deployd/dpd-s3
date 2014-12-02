@@ -2,9 +2,7 @@
   "name": "dpd-s3",
   "version": "0.2.0",
   "dependencies": {
-    "aws-sdk": "^2.0.15",
-    "formidable": "1.0.x",
-    "knox": "0.1.x"
+    "aws-sdk": "^2.0.15"
   },
   "readme": "# dpd-s3 v0.2.0\n\nDeployd module for a resource to GET/POST to and from an AWS s3 bucket\n\nThis is based on Ritchie Martori's origin version ( https://github.com/deployd/dpd-s3 ) which was un-published from npm as it didn't work.  Ritchie accepted the pull request with my changes to make it work again, but hasn't ever re-published it.  So I am publishing it as I frequently use it.\n\nSince then I have continued to make changes to suite my specific needs.  \n\n## Install\n\n\tnpm install dpd-s3\n\n## Configuration\n\nAdd a resource in the deployd dashboard selecting dpd-imageWrangler and name your resource. In the config for your new resource, you'll need to supply:\n\n-\tAWS Access Key\n- \tAWS Secret\n-\tAWS region\n-\tAWS S3 bucket name\n\n*additional optional configurations:*\n\n-\tbasePath.  optionally include a base url (like your Cloud Front url) to be inlcuded with the image urls in the repsonse JSON object.\n-\tPublic read access. When files are placed on your S3 bucket, automatically flag them for public read.\n",
   "readmeFilename": "README.md",
