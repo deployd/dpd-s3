@@ -1,7 +1,25 @@
 {
   "name": "dpd-s3",
   "version": "0.3.0",
+  "description": "get a signed Url for Put, Get file in AWS S3 in deployd",
+  "main": "index.js",
+  "repository": "deployd/dpd-s3",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dpd",
+    "deployd",
+    "dpd-module",
+    "aws",
+    "s3"
+  ],
   "dependencies": {
     "aws-sdk": "^2.0.15"
-  }
+  },
+  "contributors": [
+    "cowgp (https://github.com/cowgp)",
+    "dallonf (https://github.com/dallonf)",
+    "Eric Fong (https://github.com/ericfong)"
+  ]
 }
