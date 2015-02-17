@@ -4,7 +4,8 @@
 
 ## Description
 
-This module allows you to generate [AWS S3 pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html) that can be used to upload, retrieve or delete files on AWS s3.
+deployd module that generate [AWS S3 signedUrl](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html). You can HTTP PUT/GET/DELETE files via the signedUrl from s3 storage.
+
 
 ## Getting started
 This module requires deployd ~0.7.0.
