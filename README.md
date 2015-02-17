@@ -1,8 +1,10 @@
 # dpd-s3
 
+[![npm](https://img.shields.io/npm/v/dpd-s3.svg?style=flat-square)](https://www.npmjs.com/package/dpd-s3)
+
 ## Description
 
-get a signed Url for Put, Get file in AWS S3
+This module allows you to generate [AWS S3 pre-signed URL](http://docs.aws.amazon.com/AmazonS3/latest/dev/PresignedUrlUploadObject.html) that can be used to upload, retrieve or delete files on AWS s3.
 
 ## Getting started
 This module requires deployd ~0.7.0.
