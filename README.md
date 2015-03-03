@@ -43,8 +43,11 @@ Please fill them in using the deployd dashboard config page of this module.
 
 ### Usage example
 
+#### Using dpd.js
 
-Put signedUrl
+Dpd-s3 request a Signed URL to allow uploading/downloading a file.
+
+Request a Signed URL to upload a file named 'apple.jpg'
 ```
 dpd.s3bucket.get('apple.jpg', {
     signedUrl: 'Put'
@@ -58,7 +61,7 @@ dpd.s3bucket.get('apple.jpg', {
 ```
 
 
-Get signedUrl
+Request a Signed URL to download a file named 'apple.jpg'
 ```
 <img src="/s3bucket/apple.jpg" />
 
@@ -71,14 +74,31 @@ dpd.s3bucket.get('apple.jpg', {
 })
 ```
 
-
-Get signedUrl
+Delete file names 'apple.jpg'
 ```
 dpd.s3bucket.delete('apple.jpg', function(ret, err){
     console.log(ret, err);
 })
 ```
 
+#### Using HTTP Requests
+
+Request a Signed URL to upload a file named 'apple.jpg'
+```
+GET http://localhost:2403/my-bucket/apple.jpg?ContentType=image/jpeg&signedUrl=Put
+```
+
+
+Request a Signed URL to download a file named 'apple.jpg'
+```
+GET http://localhost:2403/my-bucket/apple.jpg?returnFormat=Url
+```
+
+
+Delete file names 'apple.jpg'
+```
+DELETE http://localhost:2403/my-bucket/apple.jpg
+```
 
 ## Contributing
 
