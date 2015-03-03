@@ -83,7 +83,8 @@ dpd.s3bucket.delete('apple.jpg', function(ret, err){
 
 #### Using HTTP Requests
 
-Request a Signed URL to upload a file named 'apple.jpg'
+Request a Signed URL to upload a file named 'apple.jpg'. 
+Then do a PUT request to the returned URL with your file in parameter, dont forget to set the proper header 'Content-Type' for this request too.
 ```
 GET http://localhost:2403/my-bucket/apple.jpg?ContentType=image/jpeg&signedUrl=Put
 ```
