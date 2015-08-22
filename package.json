@@ -1,6 +1,6 @@
 {
   "name": "dpd-s3",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "get a signed Url for Put, Get file in AWS S3 in deployd",
   "main": "index.js",
   "repository": "deployd/dpd-s3",
