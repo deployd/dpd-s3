@@ -85,7 +85,7 @@ S3Bucket.prototype.get = function (ctx, next) {
     var params = {
         Bucket: this.config.bucket,
         Key: s3Key,
-        Expires: ctx.query.Expires || 60, // default 60 seconds
+        Expires: ctx.query.Expires,
     };
 
     this.s3.getSignedUrl('getObject', params, function(err, url){
